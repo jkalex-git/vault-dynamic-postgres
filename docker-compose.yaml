@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:12.3-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres-init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  vault:
+    image: library/vault:1.5.2
+    environment:
+      VAULT_TOKEN: dev-token
+      VAULT_DEV_ROOT_TOKEN_ID: dev-token
+      VAULT_ADDR: 'http://127.0.0.1:8200'
+    ports:
+      - "8200:8200"
