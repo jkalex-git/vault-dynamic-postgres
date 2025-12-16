@@ -21,5 +21,5 @@ quarkus.vault.authentication.app-role.role-id=caa463d6-a17f-e0e3-131a-08e503d80c
 quarkus.vault.authentication.app-role.secret-id=40c6149d-1ffd-9388-34d6-879f238381c3
 ```
 4. Start the quarkus app with Java 21
-5. Run the main class in org.acme.quickstart.GreetingResourceIT inside `test` folder
+5. Run the main class in `org.acme.quickstart.GreetingResourceIT` inside `test` folder
 6. Keep it running for more than 6 mins as it is the configured vault token TTL.
