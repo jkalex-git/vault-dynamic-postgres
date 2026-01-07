@@ -25,7 +25,7 @@ vault write database/roles/postgres-gift-default \
         GRANT gift to \"{{name}}\"; \
         GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO \"{{name}}\"; \
         GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public to \"{{name}}\";" \
-    default_ttl=3m \
+    default_ttl=1m \
     max_ttl=21m \
     revocation_statements="
     ALTER ROLE \"{{name}}\" NOLOGIN; \
@@ -42,7 +42,7 @@ vault write database/roles/postgres-gift-special \
         GRANT gift to \"{{name}}\"; \
         GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO \"{{name}}\"; \
         GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public to \"{{name}}\";" \
-    default_ttl=3m \
+    default_ttl=1m \
     max_ttl=21m \
     revocation_statements="
     ALTER ROLE \"{{name}}\" NOLOGIN; \
@@ -69,7 +69,7 @@ vault policy write postgres-database /tmp/postgres-database.hcl
 # Attach policy to AppRole with 1m token TTL
 vault write auth/approle/role/myapprole \
     token_policies="default,vault-quickstart-policy,postgres-database" \
-    token_ttl=6m \
+    token_ttl=3m \
     token_max_ttl=60m
 
 vault read auth/approle/role/myapprole/role-id

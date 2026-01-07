@@ -17,7 +17,7 @@ public class GreetingResourceIT {
                 "http://localhost:8080/items",
                 "http://localhost:8080/specialItems",
         };
-
+        long startTime = System.currentTimeMillis();
         while (true) {
             // Pick a random URL
             String url = urls[random.nextInt(urls.length)];
@@ -43,9 +43,11 @@ public class GreetingResourceIT {
                 System.err.println("Request failed: " + e.getMessage());
             }
 
-            // Sleep random 1–5 seconds
+            // Sleep random 1–5 milliseconds
             int sleepSeconds = 1 + random.nextInt(5); // 1 to 5
-            Thread.sleep(sleepSeconds * 1000L);
+            Thread.sleep(sleepSeconds * 100L);
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken for failure: " + (endTime - startTime)/1000 + "s");
     }
 }
